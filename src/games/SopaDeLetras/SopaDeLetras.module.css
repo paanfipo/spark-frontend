@@ -1,0 +1,172 @@
+.gameContainer {
+  width: calc(100% - 125px);
+  height: 600px; 
+  max-height: 85vh;
+  margin-right: 60px;
+  margin-left: auto;
+  
+  background: var(--len-gradient); /* Tu gradiente personalizado */
+  border-radius: 20px;
+  color: #ffffff;
+  
+  /* 2. FLEXBOX VERTICAL */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* --- ZONA SUPERIOR (HUD) --- */
+.hud {
+  flex: 0 0 auto; 
+  width: 100%;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* --- ZONA CENTRAL (CUADRÍCULA DE LETRAS) --- */
+.gridContainer {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  overflow: hidden;
+}
+
+.grid {
+  /* Mismas dimensiones máximas que la matriz */
+  max-height: 420px; 
+  max-width: 420px;
+  width: 100%; 
+  aspect-ratio: 1 / 1; 
+
+  display: grid;
+  gap: 4px; /* Espacio más pequeño para que quepan 10x10 */
+  background: rgba(255, 255, 255, 0.05);
+  padding: 8px;
+  border-radius: 15px;
+  box-sizing: border-box;
+}
+
+/* --- CELDAS --- */
+.cell {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.1rem;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.cell:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* --- ESTADOS DE SELECCIÓN --- */
+.cell.selected {
+  background-color: #f1c40f; /* Amarillo como el pattern de matriz */
+  color: #1a1a2e;
+  transform: scale(0.92);
+}
+
+.cell.correct {
+  background-color: #2ecc71; /* Verde esmeralda */
+  color: white;
+  border: 1px solid #27ae60;
+  cursor: default; /* Cambia el cursor para indicar que ya está lista */
+  transform: scale(0.98);
+  opacity: 0.9;
+}
+
+/* Opcional: Si quieres un efecto de tachado sobre la letra en el tablero */
+.cell.correct::after {
+  content: "";
+  position: absolute;
+  width: 80%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* --- ZONA INFERIOR (LISTA DE PALABRAS) --- */
+.footer {
+  flex: 0 0 auto;
+  width: 100%;
+  height: 65px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  padding: 5px;
+}
+
+.wordList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  font-size: 0.9rem;
+}
+
+.wordFound {
+  text-decoration: line-through;
+  opacity: 0.5;
+  color: #2ecc71;
+}
+
+/* --- ELEMENTOS ABSOLUTOS (REUTILIZADOS) --- */
+.countdown {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 150px;
+  font-weight: 900;
+  z-index: 100;
+  text-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.pauseButton {
+  position: absolute;
+  top: 20px;
+  left: 75px;
+  z-index: 10;
+  background: rgba(0,0,0,0.2);
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.helpBtn {
+  background: #f39c12;
+  border: none;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.helpBtn:active {
+  transform: scale(0.9);
+}

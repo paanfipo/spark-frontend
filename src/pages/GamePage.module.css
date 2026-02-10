@@ -1,0 +1,772 @@
+/* src/pages/GamePage.module.css */
+
+/* Contenedor raíz de la página del juego */
+.gamePage {
+  height: 100svh;   /* mejor que 100vh en móviles */
+  overflow: hidden; /* quita el scroll vertical */
+  display: flex;    /* opcional: centra o controla layout */
+  justify-content: center;
+  align-items: flex-start; /* usa 'center' si quieres centrar verticalmente todo */
+}
+
+
+
+.gameContainer {
+  padding: 40px;
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.gameTitle {
+  font-size: 2.2rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.gamePhase {
+  font-size: 1.1rem;
+  color: #666;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.sentenceBuilder,
+.availableWords {
+  margin-bottom: 30px;
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.05);
+}
+
+.builderTitle,
+.availableTitle {
+  font-size: 1.4rem;
+  color: #555;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.selectedWordsArea {
+  min-height: 80px;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  padding: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+}
+
+.placeholderText {
+  color: #aaa;
+  font-style: italic;
+  font-size: 0.95rem;
+}
+
+.availableWordsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.wordButton {
+  background: linear-gradient(90deg, #fe6b8b 0%, #ff8e53 100%);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  min-width: 80px;
+  text-align: center;
+}
+
+.wordButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.wordButton:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.wordButton.selected {
+  background: #607d8b; /* Color diferente para palabras seleccionadas */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.checkButton {
+  display: block;
+  margin: 30px auto 0;
+  background-color: #4CAF50; /* Un verde para verificar */
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 12px 25px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease;
+}
+
+.checkButton:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.feedbackMessage {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.feedbackMessage.correct {
+  background-color: #e6ffe6;
+  color: #28a745;
+  border: 1px solid #28a745;
+}
+
+.feedbackMessage.incorrect {
+  background-color: #ffe6e6;
+  color: #dc3545;
+  border: 1px solid #dc3545;
+}
+
+.resultsBox {
+  margin-top: 20px;
+  padding: 20px;
+  background: #fdfdfd;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.resultsHeading {
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.resultsGrid {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.resultCard {
+  flex: 1;
+  min-width: 100px;
+  padding: 15px;
+  background: #fff;
+  border: 2px solid #eee;
+  border-radius: 10px;
+}
+
+.resultCard h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: #666;
+}
+
+.resultCard p {
+  margin: 8px 0 0;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #222;
+}
+
+.detailBox {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.resultsTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.resultsTable td {
+  padding: 8px 10px;
+  border-bottom: 1px solid #eee;
+}
+
+
+
+.resultsBox {
+  background-color: #ffffff;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.resultsBox h3, .resultsBox h4 {
+  text-align: center;
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 25px;
+}
+
+.resultsBox h4 {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+/* <<< LA MAGIA DE LA ALINEACIÓN >>> */
+.statRow {
+  display: flex; /* Activa Flexbox */
+  justify-content: space-between; /* Empuja los elementos a los extremos */
+  align-items: center; /* Los centra verticalmente */
+  padding: 15px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 1.1rem;
+}
+
+.statRow:last-child {
+  border-bottom: none;
+}
+
+.statLabel {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Espacio entre el icono y el texto */
+  color: #555;
+}
+
+.statValue {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.detailedMetricsSection {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 2px solid #f0f0f0;
+}
+
+/* Área de flotación */
+/* Área donde flotan las palabras (cielo estrellado) */
+.floatingArea {
+  position: relative;
+  width: 100%;
+  height: 300px; /* un poco más alto para que el astronauta se vea */
+  border-radius: 12px;
+  overflow: hidden;
+  background: #32B5FF; /* azul más vivo */
+  background-image: radial-gradient(white 1px, transparent 1px);
+  background-size: 30px 30px; /* puntitos tipo estrellas */
+}
+
+@keyframes starDrift {
+  0%   { background-position:   0   0,   0   0,   0   0,   0   0; }
+  100% { background-position: 380px 180px, -320px 160px, 240px -180px, -220px -160px; }
+}
+
+/* (opcional) el astronauta si lo usas como <img class="astro"> */
+.astro {
+  position: absolute;
+  bottom: 10px;   /* pegado abajo */
+  left: 83%;      /* centrado horizontal */
+  transform: translateX(-50%); /* centrado exacto */
+  width: 150px;   /* tamaño más grande */
+  opacity: 0.95;
+  pointer-events: none;
+  z-index: 4;
+  /*animation: float 3.6s ease-in-out infinite;*/
+}
+
+@keyframes float {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(20px); }
+  100% { transform: translateY(0); }
+}
+
+.floatingWord {
+  position: absolute;
+  will-change: transform;
+  transition: transform 0.08s linear;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.2));
+}
+
+/* En GamePage.module.css */
+
+.statDescription {
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: #a0a0a0;
+  margin-top: 4px;
+}
+
+.tipsSection {
+  text-align: left;
+  margin-top: 20px;
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.tipsSection h4 {
+  margin-top: 0;
+  color: #ffffff;
+}
+
+.tipsList {
+  padding-left: 20px;
+  font-size: 0.9rem;
+}
+
+.tipsList li {
+  margin-bottom: 10px;
+}
+
+/* === BRAND: rojo -> naranja (coherente con .wordButton) === */
+:root {
+  --brand-a: #fe6b8b; /* rojo rosado */
+  --brand-b: #ff8e53; /* naranja */
+  --ink-900: #2b2b2b;
+  --ink-700: #555;
+  --ink-500: #8a8a8a;
+  --card: #fff;
+  --line: #f0f0f0;
+}
+
+/* === Escala general más grande === */
+.gameContainer {
+  max-width: 1100px;              /* + ancho */
+  padding: 48px 36px;             /* + padding */
+}
+
+.gameTitle {
+  font-size: 2.8rem;              /* + tamaño título */
+  color: var(--ink-900);
+  letter-spacing: .3px;
+  margin-bottom: 18px;
+}
+
+/* === Caja principal de resultados (más presencia) === */
+.resultsBox {
+  background: var(--card);
+  padding: 36px 44px;             /* + padding */
+  border-radius: 18px;            /* + radios */
+  border: 1px solid #f3d7cf;      /* tenue con tinte cálido */
+  box-shadow:
+    0 14px 38px rgba(254,107,139,.12),
+    0 4px 14px rgba(0,0,0,.06);
+}
+
+/* subtítulos dentro de results */
+.resultsBox h3 {
+  font-size: 1.6rem;
+  color: var(--ink-900);
+  margin-bottom: 22px;
+}
+.resultsBox h4 {
+  font-size: 1.25rem;
+  color: var(--ink-700);
+  margin: 10px 0 18px;
+}
+
+/* separador */
+.divider {
+  height: 1px;
+  border: 0;
+  background: linear-gradient(90deg, #ffe7e0, #ffd3c0, #ffe7e0);
+  margin: 18px 0 14px;
+}
+
+/* === Fila de estadística (más alta, con acento de marca) === */
+.statRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px 16px;             /* + altura */
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: linear-gradient(180deg, #fff, #fffaf7);
+  position: relative;
+  margin-bottom: 12px;
+  box-shadow: 0 6px 16px rgba(255,142,83,.06);
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+}
+.statRow:hover {
+  transform: translateY(-1px);
+  border-color: #ffd3c0;
+  box-shadow: 0 10px 22px rgba(255,142,83,.10);
+}
+/* barra de acento a la izquierda */
+.statRow::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 6px;
+  border-top-left-radius: 14px;
+  border-bottom-left-radius: 14px;
+  background: linear-gradient(180deg, var(--brand-a), var(--brand-b));
+}
+
+/* etiqueta + icono en burbuja */
+.statLabel { display: flex; flex-direction: column; gap: 6px; color: var(--ink-700); }
+.statLabel > div { display: flex; align-items: center; gap: 12px; font-weight: 700; color: var(--ink-900); }
+.statLabel > div svg {
+  width: 22px; height: 22px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--brand-a), var(--brand-b));
+  border-radius: 50%;
+  padding: 6px;
+  box-shadow: 0 2px 8px rgba(254,107,139,.35);
+}
+
+/* descripción breve */
+.statDescription {
+  font-size: .92rem;
+  color: var(--ink-500);
+  margin: 2px 0 0;
+  max-width: 560px;
+  line-height: 1.35;
+}
+
+/* valor numérico MUY visible */
+.statValue {
+  font-weight: 900;
+  font-size: 1.9rem;              /* + grande */
+  letter-spacing: .2px;
+  color: var(--ink-900);
+  min-width: 120px;
+  text-align: right;
+}
+/* efecto de “resalte” para el valor (opcional, sutil) */
+.statValue::after {
+  content: "";
+  display: block;
+  height: 4px;
+  margin-top: 6px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--brand-a), var(--brand-b));
+  opacity: .18;
+}
+
+/* === Tips con banda roja-naranja === */
+.tipsSection {
+  background: #fff7f5;
+  border: 1px solid #ffd6c6;
+  border-left: 6px solid transparent;
+  border-radius: 14px;
+  padding: 16px 18px;
+  background-image: linear-gradient(180deg, #fff7f5, #fff2ec);
+  /* banda gradiente */
+  box-shadow: 0 6px 16px rgba(255,142,83,.08);
+  position: relative;
+}
+.tipsSection::before {
+  content: "";
+  position: absolute;
+  left: -1px; top: -1px; bottom: -1px; width: 6px;
+  border-top-left-radius: 14px; border-bottom-left-radius: 14px;
+  background: linear-gradient(180deg, var(--brand-a), var(--brand-b));
+}
+.tipsSection h4 { margin: 0 0 8px; color: var(--ink-900); }
+.tipsList { margin: 6px 0 0 18px; color: var(--ink-700); }
+
+/* === Botón final con gradiente de marca, más grande === */
+.checkButton {
+  background: linear-gradient(90deg, var(--brand-a), var(--brand-b));
+  color: #fff;
+  border: none;
+  font-weight: 900;
+  padding: 12px 22px;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 10px 22px rgba(254,107,139,.24);
+  transition: transform .12s ease, filter .12s ease;
+}
+.checkButton:hover { transform: translateY(-1px); filter: brightness(1.03); }
+
+/* === Responsive === */
+@media (max-width: 860px) {
+  .gameTitle { font-size: 2.4rem; }
+  .statValue { font-size: 1.6rem; min-width: 90px; text-align: left; }
+  .statRow { flex-direction: column; align-items: flex-start; }
+}
+
+
+/* ===== Grid de tarjetas (3 por fila) ===== */
+.metricsGrid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:16px;
+  margin:10px 0 14px;
+}
+@media (max-width: 980px){ .metricsGrid{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width: 640px){ .metricsGrid{ grid-template-columns:1fr; } }
+
+/* ===== Tarjeta base ===== */
+.metricCard{
+  position:relative;
+  background:#ffffff;
+  border:1px solid #ffd9cc;                 /* borde cálido */
+  border-radius:16px;
+  padding:16px 18px;
+  box-shadow:0 12px 26px rgba(255,142,83,.16), 0 4px 10px rgba(0,0,0,.06);
+  transition:transform .12s ease, box-shadow .12s ease;
+}
+.metricCard:hover{
+  transform:translateY(-2px);
+  box-shadow:0 16px 34px rgba(254,107,139,.22), 0 6px 14px rgba(0,0,0,.08);
+}
+
+/* barra superior de acento */
+.metricCard::before{
+  content:"";
+  position:absolute; left:0; right:0; top:0; height:6px;
+  border-top-left-radius:16px; border-top-right-radius:16px;
+  background:linear-gradient(90deg,#fe6b8b,#ff8e53); /* default brand */
+}
+
+/* Encabezado de la tarjeta */
+.metricHeader{
+  display:flex; align-items:center; gap:10px;
+  font-weight:800; color:#2c2c2c; margin-bottom:10px;
+}
+.metricIcon{
+  display:inline-grid; place-items:center;
+  width:34px; height:34px; border-radius:10px;
+  color:#fff;
+  background:linear-gradient(135deg,#fe6b8b,#ff8e53);
+  box-shadow:0 4px 12px rgba(254,107,139,.35);
+}
+
+/* Valor grande centrado a la izquierda */
+.metricValue{ display:flex; align-items:baseline; gap:6px; margin:4px 0 6px; }
+.metricNumber{ font-size:28px; font-weight:900; color:#1f1f1f; letter-spacing:.2px; }
+.metricSuffix{ font-size:14px; color:#6b6b6b; }
+
+/* Ayuda/nota */
+.metricHelp{ margin:4px 0 0; font-size:12.5px; color:#6f6f6f; line-height:1.35; }
+
+/* ===== Variantes de color por tarjeta ===== */
+.metricCard--brand::before{ background:linear-gradient(90deg,#fe6b8b,#ff8e53); }
+.metricCard--brand .metricIcon{ background:linear-gradient(135deg,#fe6b8b,#ff8e53); }
+
+.metricCard--time::before{ background:linear-gradient(90deg,#ff8e53,#ffb65c); }
+.metricCard--time .metricIcon{ background:linear-gradient(135deg,#ff8e53,#ffb65c); }
+
+.metricCard--iei::before{ background:linear-gradient(90deg,#ff6f61,#ff8a65); }
+.metricCard--iei .metricIcon{ background:linear-gradient(135deg,#ff6f61,#ff8a65); }
+
+.metricCard--errors::before{ background:linear-gradient(90deg,#ef4444,#ff6b6b); }
+.metricCard--errors .metricIcon{ background:linear-gradient(135deg,#ef4444,#ff6b6b); }
+
+.metricCard--distractors::before{ background:linear-gradient(90deg,#f97316,#fb923c); }
+.metricCard--distractors .metricIcon{ background:linear-gradient(135deg,#f97316,#fb923c); }
+
+.metricCard--level::before{ background:linear-gradient(90deg,#ff7a7a,#ffa36b); }
+.metricCard--level .metricIcon{ background:linear-gradient(135deg,#ff7a7a,#ffa36b); }
+
+/* Paleta pastel rojo→naranja */
+:root{
+  --brand-a:#fe6b8b;   /* rojo rosado */
+  --brand-b:#ff8e53;   /* naranja */
+  --pastel-1a:#ffe3e8; --pastel-1b:#ffd9c4; /* rosa -> durazno */
+  --pastel-2a:#ffe7d6; --pastel-2b:#fff1e3; /* albaricoque suave */
+  --pastel-3a:#ffd9d2; --pastel-3b:#ffe3d3; /* coral claro */
+  --ink-900:#1f1f1f; --ink-600:#5b5b5b;
+}
+
+/* Grid horizontal 3 por fila */
+.kpisRow{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+  margin:12px 0 18px;
+}
+@media (max-width: 900px){ .kpisRow{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width: 560px){ .kpisRow{ grid-template-columns:1fr; } }
+
+/* Tarjeta base */
+.kpiCard{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:16px 18px;
+  border-radius:16px;
+  border:1px solid rgba(255,142,83,.25);
+  box-shadow:0 10px 24px rgba(255,142,83,.18), 0 4px 10px rgba(0,0,0,.06);
+  transition:transform .12s ease, box-shadow .12s ease, filter .12s ease;
+}
+.kpiCard:hover{ transform:translateY(-2px); filter:brightness(1.02); }
+
+/* Variantes de relleno (pastel) */
+.kpiCard--level{    background:linear-gradient(135deg,var(--pastel-1a),var(--pastel-1b)); }
+.kpiCard--completed{background:linear-gradient(135deg,var(--pastel-2a),var(--pastel-2b)); }
+.kpiCard--score{    background:linear-gradient(135deg,var(--pastel-3a),var(--pastel-3b)); }
+
+/* Icono en burbuja */
+.kpiIcon{
+  display:grid; place-items:center;
+  width:42px; height:42px; border-radius:12px;
+  color:#fff;
+  background:linear-gradient(135deg,var(--brand-a),var(--brand-b));
+  box-shadow:0 6px 14px rgba(254,107,139,.35);
+}
+
+/* Texto */
+.kpiBody{ display:flex; flex-direction:column; }
+.kpiLabel{ font-size:12.5px; color:var(--ink-600); margin-bottom:2px; }
+.kpiValue{ font-size:26px; font-weight:900; color:var(--ink-900); line-height:1; }
+
+/* =================== TIPOGRAFÍA FIJA (sin clamp) =================== */
+/* Base generosa; NO se reduce en móviles, solo crece en pantallas más anchas */
+
+.gameTitle {            /* Título principal */
+  font-size: 2.6rem;    /* base */
+  line-height: 1.15;
+}
+
+/* KPIs (Nivel, Completados, Puntaje) */
+.kpiIcon { width: 48px; height: 48px; border-radius: 14px; }
+.kpiLabel { font-size: 1.05rem; }
+.kpiValue { font-size: 2.2rem; font-weight: 900; }
+
+/* Tarjetas de métricas (metricsGrid) */
+.metricHeader { font-size: 1.05rem; }
+.metricIcon { width: 40px; height: 40px; border-radius: 12px; }
+.metricNumber { font-size: 2.2rem; font-weight: 900; }
+.metricSuffix { font-size: 1rem; }
+.metricHelp { font-size: 0.98rem; line-height: 1.45; }
+
+/* Fila tipo .statRow (si la sigues usando en alguna parte) */
+.statLabel > div { font-size: 1.05rem; }
+.statDescription { font-size: 0.98rem; }
+.statValue { font-size: 2rem; }
+.resultsBox h3 { font-size: 1.7rem; }
+.resultsBox h4 { font-size: 1.2rem; }
+
+/* Botón final un poco más grande */
+.checkButton { font-size: 1.08rem; padding: 14px 24px; }
+
+/* =================== BREAKPOINTS: SOLO AUMENTAN =================== */
+
+@media (min-width: 768px) {
+  .gameTitle { font-size: 3.0rem; }
+  .kpiValue { font-size: 2.6rem; }
+  .metricNumber { font-size: 2.6rem; }
+  .metricHeader { font-size: 1.15rem; }
+  .metricIcon { width: 44px; height: 44px; }
+  .statValue { font-size: 2.2rem; }
+}
+
+@media (min-width: 1200px) {
+  .gameTitle { font-size: 3.2rem; }
+  .kpiValue { font-size: 2.9rem; }
+  .metricNumber { font-size: 3rem; }
+  .metricHeader { font-size: 1.25rem; }
+  .metricIcon { width: 48px; height: 48px; }
+  .statValue { font-size: 2.4rem; }
+}
+
+/* =================== DETALLES UX =================== */
+
+/* Asegura que el sufijo (p.ej., "s" o "%") quede en la MISMA línea del valor */
+.metricValue { display: inline-flex; align-items: baseline; gap: 6px; }
+
+/* Si aún usas .statValue con un sufijo textual al lado, desactiva la línea decorativa
+   que podría empujar el sufijo hacia abajo en pantallas estrechas */
+.metricsGrid .statValue::after,
+.statRow .statValue::after { display: none; }
+
+/* Mantén el ancho de la caja para que “respire” el tamaño grande */
+.resultsBox { padding: 36px 44px; }
+
+/* Evita que otros bloques sobrescriban nuestra escala */
+:root {
+  --ink-900: #2b2b2b; --ink-700: #555; --ink-500: #8a8a8a;
+}
+
+/* === Centrar el panel de resultados y las rejillas === */
+.resultsBox {
+  max-width: 1040px;    /* ancho cómodo para 3 tarjetas por fila */
+  margin: 22px auto;    /* centra horizontalmente */
+}
+
+.kpisRow,
+.metricsGrid {
+  max-width: 1040px;    /* alinear con el contenedor */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* === “¿Cómo puedes mejorar?” un poco más grande y legible === */
+.tipsSection h4 {
+  font-size: 1.25rem;   /* + tamaño del título */
+  letter-spacing: .2px;
+}
+
+.tipsList {
+  font-size: 1.02rem;   /* + cuerpo del texto */
+  line-height: 1.55;    /* más aire entre líneas */
+}
+
+.tipsList li strong {
+  font-weight: 800;     /* resalta las frases clave */
+}
+
+/* Botón centrado por si algún estilo lo empuja */
+.checkButton {
+  display: block;
+  margin: 18px auto 0;  /* centrado horizontal */
+}
+
+/* ======= 1) CENTRAR NÚMEROS EN LAS TARJETAS DE MÉTRICAS ======= */
+/* No cambia headers ni descripciones; solo el bloque del valor */
+.metricCard .metricValue{
+  width: 100%;
+  display: inline-flex;        /* ya lo usabas; reforzamos */
+  justify-content: center;     /* <-- centrado horizontal */
+  align-items: baseline;
+  text-align: center;
+  gap: 6px;
+}
+.metricCard .metricNumber,
+.metricCard .metricSuffix{
+  display: inline-block;
+  white-space: nowrap;         /* evita saltos raros de línea */
+}
+
+/* (Opcional) centrado también del KPI superior (Nivel, Completados, Puntaje) */
+.kpiCard{
+  justify-content: center;     /* centra el contenido dentro de cada tarjeta */
+}
+.kpiBody{
+  align-items: center;
+  text-align: center;
+}
+
+/* ======= 2) SI PREFIERES “JUSTIFICADO A LA DERECHA” EN ALGUNA TARJETA ======= */
+/* Aplica la clase .alignRight a esa tarjeta en JSX si la necesitas: 
+   <div className={`${styles.metricCard} ${styles["metricCard--iei"]} ${styles.alignRight}`}> ... </div>
+*/
+.alignRight .metricValue{
+  justify-content: flex-end;
+  text-align: right;
+}

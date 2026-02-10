@@ -1,0 +1,264 @@
+/* src/games/ColoreaElCamino/ColoreaElCamino.module.css */
+
+.gameContainer{
+  width: calc(100% - 125px);
+  height: 600px;
+  max-height: 85vh;
+  margin-right: 60px;
+  margin-left: auto;
+
+  background: var(--mem-gradient);
+  border-radius: 20px;
+  color: #ffffff;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+}
+
+.hud{
+  flex: 0 0 auto;
+  width: 100%;
+  padding: 10px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-around;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+
+.board{
+  display: grid;
+  position: relative;
+
+  background: rgba(255,255,255,0.06);
+  border: 2px solid rgba(255,255,255,0.25);
+  border-radius: 16px;
+
+  padding: 6px;           /* si mantiene padding, la capa debe empezar en 10px */
+  box-sizing: content-box; /* width/height representan SOLO el área de celdas */
+}
+
+/* Celdas */
+.cell{
+  background-color: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 6px;
+}
+
+.cellTarget{
+  background-color: rgba(255,255,255,0.18);
+  border-color: rgba(255,255,255,0.22);
+}
+
+.cellObstacle{ background-color: rgba(0,0,0,0.35); border-color: rgba(0,0,0,0.35); }
+.cellUncovered{
+  outline: 2px solid rgba(241,196,15,0.75);
+  outline-offset: -1px;
+}
+
+.cellOverlap{ outline: 2px solid rgba(231,76,60,0.95); }
+
+/* Capa de piezas: una sola definición coherente con padding=10px */
+.piecesLayer{
+  position: absolute;
+  left: 6px;
+  top: 6px;
+  pointer-events: none;
+}
+
+/* Pieza real (en tablero) */
+.piece{
+  position: absolute;
+  pointer-events: auto;
+  touch-action: none;
+}
+
+.pieceCell{
+  position: absolute;
+  border-radius: 6px;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.25) inset;
+}
+
+/* Ghost */
+.pieceGhost{
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.45;
+}
+.pieceGhostOk{ filter: none; }
+.pieceGhostBad{ filter: grayscale(1); opacity: 0.35; }
+
+.pieceCellGhost{
+  position: absolute;
+  border-radius: 6px;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.18) inset;
+}
+
+/* ===== BANDEJA ===== */
+.tray{
+  width: 100%;
+  max-width: 720px;
+  margin-top: 10px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.traySlot{
+  position: relative; /* obligatorio para centrar .trayControls dentro del cuadro */
+}
+
+.trayControls{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+
+
+
+
+/* Countdown y pausa */
+.countdown{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 150px;
+  font-weight: 900;
+  z-index: 100;
+}
+
+.pauseButton{
+  position: absolute;
+  top: 20px;
+  left: 75px;
+  z-index: 10;
+  background: rgba(0,0,0,0.2);
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.footer{
+  flex: 0 0 auto;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+/* Contenedor interno: tablero arriba + bandeja abajo */
+.layout{
+  width: 100%;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* clave: deja espacio para la bandeja */
+  align-items: center;
+  gap: 12px;
+  min-height: 0;
+}
+
+/* El tablero debe poder “encogerse” dentro del alto fijo */
+.boardWrap{
+  flex: 1 1 auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 0;
+}
+
+/* Bandeja siempre visible abajo */
+.trayWrap{
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 6px;
+}
+
+/* Contenedor de los 2 botones centrado dentro del slot sombreado */
+.pieceControls{
+  position: absolute;
+  top: 8px;                 /* dentro del cuadro sombreado */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  pointer-events: auto;
+}
+
+
+.pieceControls button{
+  pointer-events: auto;
+}
+
+.pieceControls{
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none; /* el overlay no captura drag */
+}
+
+.pieceControls button{
+  pointer-events: auto; /* pero botones sí */
+}
+
+.pieceBody{
+  position: relative;
+  z-index: 1;
+}
+
+/* Rotar: arriba-derecha */
+
+/* Controles encima de la pieza, centrados */
+
+
+/* Los botones dentro del control */
+/* Botones: ya NO van posicionados por esquina */
+/* Centrar el icono dentro del "cuadro sombreado" (botón) */
+.rotateBtn,
+.flipBtn,
+.trayBtn{
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border-radius: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  line-height: 1;       /* evita que el glyph quede “arriba” */
+  font-size: 18px;      /* ajuste fino si lo quiere más grande */
+}
+
+
+

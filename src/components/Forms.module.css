@@ -1,0 +1,152 @@
+/* src/components/Forms.module.css */
+
+.authContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 450px; /* Ancho máximo para el panel de formularios */
+  padding: 20px;
+}
+
+.authBox {
+  background: #ffffff;
+  border-radius: 20px; /* Bordes más redondeados */
+  box-shadow: 
+    8px 8px 16px rgba(182, 198, 203, 0.4), /* Sombra exterior */
+    -8px -8px 16px rgba(255, 255, 255, 0.9); /* Sombra interior clara */
+  padding: 40px;
+  width: 100%;
+  max-width: 400px; /* Ancho del formulario real */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  position: relative; /* Para posicionar el gradiente si lo ponemos como overlay */
+}
+
+.authBox h2 {
+  font-size: 2.1rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.authBox p {
+  color: #666;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.inputGroup {
+  position: relative;
+  width: 100%;
+  display: flex; /* CRÍTICO: Usa flexbox para alinear el icono y el input */
+  align-items: center; /* Centra verticalmente el icono y el input */
+  /* Quitamos el box-shadow directo del inputGroup si estaba antes */
+  border-radius: 12px; /* Redondeamos el contenedor del input */
+  overflow: hidden; /* Asegura que cualquier cosa dentro no se salga de los bordes redondeados */
+  box-shadow: 
+    3px 3px 6px #d8dade, 
+    -3px -3px 6px #ffffff; /* Sombra sutil para el efecto de "neumorphism" en el grupo */
+}
+
+.inputIcon {
+  position: absolute; /* Mantenemos el absolute para posicionar el icono */
+  left: 15px;
+  /* top: 50%; */ /* Ya no es necesario si inputGroup es flex y align-items: center */
+  /* transform: translateY(-50%); */ /* Ya no es necesario */
+  color: #888;
+  font-size: 1.2rem;
+  z-index: 1; /* Aseguramos que el icono esté por encima del input */
+}
+
+.authBox input {
+  flex-grow: 1; /* CRÍTICO: Hace que el input ocupe todo el espacio disponible */
+  padding: 18px 20px 18px 50px; /* Relleno a la izquierda para el icono */
+  border: none;
+  border-radius: 12px; /* AHORA SÍ se verá el redondeo del input */
+  background-color: #f0f2f5;
+  /* Las sombras inset del input son las que dan el efecto "hundido" */
+  box-shadow: 
+    inset 2px 2px 5px rgba(182, 198, 203, 0.2), 
+    inset -2px -2px 5px rgba(255, 255, 255, 0.7);
+  font-size: 1.2rem;
+  color: #333;
+  transition: box-shadow 0.2s ease-in-out;
+  outline: none;
+}
+
+.authBox input:focus {
+  box-shadow: 
+    inset 1px 1px 3px rgba(182, 198, 203, 0.4), 
+    inset -1px -1px 3px rgba(255, 255, 255, 0.9),
+    0 0 0 2px #ffc0b1; /* Borde al enfocar */
+}
+
+.authButton {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 12px;
+  /* Utiliza tu gradiente aquí */
+  background: linear-gradient(90deg, #fe6b8b 0%, #ff8e53 100%); 
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 
+    5px 5px 10px rgba(182, 198, 203, 0.4), 
+    -5px -5px 10px rgba(255, 255, 255, 0.9); /* Sombra para el botón */
+  transition: all 0.2s ease;
+}
+
+.authButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    8px 8px 15px rgba(182, 198, 203, 0.6), 
+    -8px -8px 15px rgba(255, 255, 255, 0.8);
+}
+
+.authButton:active {
+  transform: translateY(1px);
+  box-shadow: 
+    inset 2px 2px 5px rgba(182, 198, 203, 0.4), 
+    inset -2px -2px 5px rgba(255, 255, 255, 0.9);
+}
+
+.linkText {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.linkText a {
+  color: #ff8e53; /* Color de tu gradiente */
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.linkText a:hover {
+  text-decoration: underline;
+}
+
+.optionsContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 0.85rem;
+}
+
+.rememberMe {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #666;
+}
+
+.rememberMe input[type="checkbox"] {
+  width: auto; /* Para que el checkbox no ocupe todo el ancho */
+  box-shadow: none;
+  margin: 0;
+  padding: 0;
+}

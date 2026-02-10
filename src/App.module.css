@@ -1,0 +1,42 @@
+/* src/App.module.css */
+
+.authContainer {
+  display: flex;
+  width: 100vw;
+  height: 100vh; /* Ocupa toda la altura de la ventana */
+  font-family: sans-serif;
+}
+
+.leftPanel {
+  flex: 1; /* Hace que ocupe el 50% del espacio */
+  background: linear-gradient(1160deg, #fe6b8b 0%, #ff8e53 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  padding: 40px;
+}
+
+.welcomeContent {
+  text-align: center;
+}
+
+.rightPanel {
+  flex: 1; /* Hace que ocupe el otro 50% */
+  background: #ffffff;
+  display: flex;
+  flex-direction: column; /* Apila los elementos verticalmente */
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.welcomeContent h1 {
+  font-size: 3rem; /* Aprox. 51px. 'rem' se basa en el tamaño de letra del body */
+  margin-bottom: 0.5em;
+}
+
+.welcomeContent h2 {
+  font-size: 1.5rem; /* Aprox. 25.5px */
+  font-weight: 300; /* Hacemos el subtítulo un poco más delgado y elegante */
+}

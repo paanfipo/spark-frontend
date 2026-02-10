@@ -1,0 +1,28 @@
+/* src/pages/Dashboard.module.css */
+.dashboardLayout {
+  display: grid;
+  grid-template-columns: 240px 1fr; /* Columna 1 para sidebar, Columna 2 para el resto */
+  grid-template-rows: 60px 1fr; /* Fila 1 para header, Fila 2 para el resto */
+  grid-template-areas:
+    "header header"
+    "sidebar main";
+  width: 100vw;
+  height: 100vh;
+}
+
+.mainContent {
+  grid-area: main;
+  padding: 40px;
+  overflow-y: auto;
+
+  /* Nuevo fondo con la paleta cálida */
+  background: linear-gradient(
+    180deg,
+    #fff7f5 0%,      /* un rosado muy suave arriba */
+    #fff0eb 50%,     /* transición cálida en el medio */
+    #ffffff 100%     /* blanco limpio abajo */
+  );
+
+  /* Para que se vea más elegante */
+  min-height: 100vh;
+}

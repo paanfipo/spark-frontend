@@ -1,0 +1,13 @@
+cd "C:\Users\Profesora Paula\Documents\spark-backend"
+.\venv\Scripts\actívate
+venv\Scripts\activate.bat
+
+cd ..
+uvicorn spark-backend.main:app --reload
+
+cd "C:\Users\Profesora Paula\Documents\frontend"
+npm run dev
+
+3031-3120
+
+7560 -> medula

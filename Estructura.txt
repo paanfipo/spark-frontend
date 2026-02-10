@@ -1,0 +1,16 @@
+components/
+ ├─ Instrucciones/
+ │   ├─ Instrucciones.jsx          ← versión final (fusionada con PantallaInstrucciones)
+ │   └─ Instrucciones.module.css   ← con hero + infoCards
+ ├─ ResumenMetricas/
+ │   └─ (se mantiene igual)
+layout/
+ ├─ GameCanvas.jsx
+ └─ GameCanvas.module.css
+games/
+ └─ MatrizMemoria/
+     ├─ MatrizMemoria.jsx
+     └─ MatrizMemoria.module.css
+pages/
+ ├─ GameListPage.jsx
+ └─ GameList.module.css

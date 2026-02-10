@@ -1,0 +1,129 @@
+
+.gameContainer {
+  /* 1. CAJA VERDE FIJA */
+  width: calc(100% - 125px);
+  height: 600px; /* Altura Fija */
+  max-height: 85vh; /* Seguridad para pantallas pequeñas */
+  margin-right: 60px;
+  margin-left: auto;
+  
+  background: var(--mem-gradient);
+  border-radius: 20px;
+  color: #ffffff;
+  
+  /* 2. FLEXBOX VERTICAL */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  box-sizing: border-box;
+  overflow: hidden; /* Corta cualquier cosa que intente salirse */
+}
+/* --- MISMO HUD --- */
+.hud {
+  flex: 0 0 auto; 
+  width: 100%;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-around;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* --- ZONA CENTRAL (ESCENARIO DE POSNER) --- */
+.stage {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 80px; /* Espacio entre el centro y las cajas laterales */
+}
+
+/* REUTILIZAMOS EL ESTILO DE LAS CELDAS PARA LAS CAJAS DE ATENCIÓN */
+.box {
+  width: 140px;
+  height: 140px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.box.hasTarget {
+  border-color: #f1c40f;
+  box-shadow: 0 0 20px rgba(241, 196, 15, 0.4);
+  background-color: rgba(241, 196, 15, 0.1);
+}
+
+.center {
+  width: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 5rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #ffffff;
+}
+
+.star {
+  font-size: 4rem;
+  filter: drop-shadow(0 0 10px gold);
+  animation: popIn 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* --- MISMO FOOTER --- */
+.footer {
+  flex: 0 0 auto;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+/* --- REUTILIZAMOS COUNTDOWN Y PAUSE --- */
+.countdown { 
+  position: absolute; 
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  font-size: 150px; 
+  font-weight: 900; 
+  z-index: 100; 
+  text-shadow: 0 0 30px rgba(0,0,0,0.5);
+}
+
+.pauseButton { 
+  position: absolute; 
+  top: 20px; 
+  left: 75px; 
+  z-index: 10; 
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color:white; 
+  padding: 5px 10px; 
+  border-radius: 5px; 
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+
+
+
+
+
+@keyframes popIn {
+  from { transform: scale(0); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}

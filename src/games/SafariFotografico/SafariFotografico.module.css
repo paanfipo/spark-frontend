@@ -1,0 +1,108 @@
+.gameContainer {
+  width: calc(100% - 125px);
+  height: 600px;
+  max-height: 85vh;
+  margin-right: 60px;
+  margin-left: auto;
+  
+  background: var(--at-gradient); /* Cambia por tu gradiente de safari */
+  border-radius: 20px;
+  color: #ffffff;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+}
+
+
+
+/* --- ZONA SUPERIOR (HUD) --- */
+.hud {
+  flex: 0 0 auto; 
+  width: 100%;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-around;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* --- ZONA CENTRAL (EL CAMPO DE SAFARI) --- */
+.field {
+  flex: 1;
+  width: 100%;
+  max-width: 800px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  position: relative; /* Para que los animales se posicionen adentro */
+  cursor: crosshair; /* Puntero de cámara/mira */
+  margin: 0 auto;
+}
+
+/* --- ANIMALES --- */
+.animal {
+  position: absolute;
+  font-size: 4rem;
+  user-select: none;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+  animation: animalPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.animal:active {
+  transform: scale(0.8);
+}
+
+/* --- ZONA INFERIOR --- */
+.footer {
+  flex: 0 0 auto;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+/* --- OTROS (REUTILIZADOS) --- */
+.countdown { 
+  position: absolute; 
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  font-size: 150px; 
+  font-weight: 900; 
+  z-index: 100; 
+}
+
+.pauseButton { 
+  position: absolute; 
+  top: 20px; 
+  left: 15px; 
+  z-index: 10; 
+  background: rgba(0,0,0,0.2); 
+  border:none; 
+  color:white; 
+  padding: 5px 10px; 
+  border-radius: 5px; 
+  cursor: pointer;
+}
+
+.pauseButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@keyframes animalPop {
+  from { transform: scale(0) rotate(-20deg); opacity: 0; }
+  to { transform: scale(1) rotate(0deg); opacity: 1; }
+}

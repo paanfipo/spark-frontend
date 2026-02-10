@@ -1,0 +1,163 @@
+/* src/games/TormentaPalabras/TormentaPalabras.module.css */
+
+.gameContainer {
+  /* 1. CAJA FIJA (Copiado de Matriz) */
+  width: calc(100% - 125px);
+  height: 600px;
+  max-height: 85vh;
+  margin-right: 60px;
+  margin-left: auto;
+  
+  background: var(--len-gradient);
+  border-radius: 20px;
+  color: #ffffff;
+  
+  /* 2. FLEXBOX VERTICAL */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+/* --- ZONA SUPERIOR (HUD) --- */
+.hud {
+  flex: 0 0 auto; 
+  width: 100%;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-weight: 700;
+  margin-bottom: 10px;
+  /* Espacio para el botón pausa */
+  padding-left: 80px; 
+}
+
+.activeLetter {
+  font-size: 1.8rem;
+  color: #f1c40f;
+  text-shadow: 0 0 10px rgba(241, 196, 15, 0.4);
+}
+
+/* --- BARRA DE TIEMPO --- */
+.timerTrack {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+
+.timerFill {
+  height: 100%;
+  background: #2ecc71;
+  transition: width 1s linear;
+}
+
+/* --- ZONA CENTRAL (INPUT Y NUBE) --- */
+.mainArea {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  overflow: hidden;
+}
+
+.inputForm {
+  width: 100%;
+  max-width: 450px;
+}
+
+.wordInput {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.9);
+  color: #2d3436;
+  text-align: center;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.wordInput:focus {
+  border-color: #f1c40f;
+  box-shadow: 0 0 15px rgba(241, 196, 15, 0.3);
+}
+
+/* Contenedor de palabras encontradas */
+.wordCloud {
+  width: 100%;
+  max-width: 550px;
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  padding: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 8px;
+  overflow-y: auto;
+}
+
+/* Estilo de cada palabra como las celdas de la matriz */
+.wordTag {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  animation: popIn 0.3s ease-out;
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* --- ZONA INFERIOR (FOOTER) --- */
+.footer {
+  flex: 0 0 auto;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* --- ELEMENTOS ABSOLUTOS --- */
+.pauseButton {
+  position: absolute; 
+  top: 20px; 
+  left: 30px; /* Ajustado según tu Matriz */
+  z-index: 10; 
+  background: rgba(0,0,0,0.2); 
+  border:none; 
+  color:white; 
+  padding: 5px 12px; 
+  border-radius: 5px; 
+  cursor: pointer;
+}
+
+.countdown {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 150px;
+  font-weight: 900;
+  z-index: 100;
+}

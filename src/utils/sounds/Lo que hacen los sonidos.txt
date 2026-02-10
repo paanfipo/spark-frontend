@@ -1,0 +1,13 @@
+game-start.mp3 (para cuando inicia el juego)
+
+cell-click-light.mp3 (para el clic en una casilla)
+
+level-correct.mp3 (para cuando aciertas el nivel)
+
+level-incorrect.mp3 (para cuando fallas el nivel)
+
+game-over.mp3 (para cuando pierdes todas las vidas)
+
+pause-in.mp3 (al presionar "Pausa")
+
+pause-out.mp3 (al presionar "Reanudar")

@@ -1,0 +1,150 @@
+/* --- CONTENEDOR PRINCIPAL (LA CAJA VERDE) --- */
+.gameContainer {
+  width: calc(100% - 125px);
+  height: 600px;
+  max-height: 85vh;
+  margin-right: 60px;
+  margin-left: auto;
+  
+  background: var(--mem-gradient);
+  border-radius: 20px;
+  color: #ffffff;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+}
+
+/* --- HUD SUPERIOR --- */
+.hud {
+  flex: 0 0 auto;
+  width: 100%;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.statsBadge {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 5px 15px;
+  border-radius: 20px;
+}
+
+/* --- INDICADOR DE REGLA (EL BANNER) --- */
+.ruleBanner {
+  width: 100%;
+  max-width: 400px;
+  padding: 15px;
+  text-align: center;
+  border-radius: 15px;
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* Colores para diferenciar reglas */
+.ruleNumber { background-color: #3498db; border: 2px solid #ffffff; } /* Azul para números */
+.ruleLetter { background-color: #9b59b6; border: 2px solid #ffffff; } /* Púrpura para letras */
+
+/* --- CUERPO CENTRAL (ESTÍMULO) --- */
+.gameBody {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.stimulusCard {
+  width: 220px;
+  height: 220px;
+  background: white;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 5rem;
+  font-weight: 900;
+  color: #2c3e50;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  margin-bottom: 30px;
+  animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* --- BOTONES DE RESPUESTA --- */
+.buttonGroup {
+  display: flex;
+  gap: 30px;
+}
+
+.btnResponse {
+  width: 120px;
+  height: 60px;
+  border: none;
+  border-radius: 15px;
+  font-size: 1.2rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.1s, background-color 0.2s;
+  color: white;
+}
+
+.btnYes { background-color: #2ecc71; box-shadow: 0 4px 0 #27ae60; }
+.btnNo { background-color: #e74c3c; box-shadow: 0 4px 0 #c0392b; }
+
+.btnResponse:active { transform: translateY(4px); box-shadow: none; }
+
+/* --- OTROS --- */
+.footer {
+  flex: 0 0 auto;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-style: italic;
+  opacity: 0.8;
+}
+
+.countdown {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 150px;
+  font-weight: 900;
+  z-index: 100;
+  color: white;
+  text-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.pauseButton {
+  position: absolute;
+  top: 20px;
+  left: 75px;
+  z-index: 10;
+  background: rgba(0,0,0,0.2);
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}

@@ -1,0 +1,565 @@
+/* src/components/Instrucciones/Instrucciones.module.css */
+
+/* ===== Paleta rosado–naranja–blanco */
+:root{
+  --rose-0:#fff7f8;
+  --rose-1:#ffe2e7;
+  --rose:#ff6aa6;
+  --coral:#ff7e79;
+  --orange:#ffa25f;
+  --ink-1:#0f172a;
+  --ink-2:#334155;
+  --line:#eceff4;
+}
+
+/* ===== HERO oscuro, limpio y sin desbordes ===== */
+/* Lluvia suave de cuadritos por todo el hero */
+/* Lluvia sutil por todo el hero */
+/*.hero::before{
+  content:"";
+  position:absolute;
+  inset:-6%;
+  background-image: var(--hero-image);
+  background-repeat: repeat;
+  background-size: 320px;  /* sube/baja para variar densidad global */
+ /* opacity:.08;             /* .06 a .10 según gusto */
+ /* pointer-events:none;
+  z-index:0;
+  border-radius: inherit; 
+}*/
+
+
+.hero{
+  width:100%;               /* 👈 ocupa todo el ancho disponible */
+  max-width:100%;           /* 👈 no pongas 1200/1350 aquí */
+  margin:0;                 /* 👈 sin márgenes que lo desplacen */
+  padding:34px 28px 28px;
+  border-radius:18px;
+  background: var(--hero-bg, linear-gradient(135deg,#0b1a2b 0%,#0d2238 35%,#102a47 65%,#162b3c 100%));
+  position:relative;
+  overflow:hidden;          /* clip interno de la decoración */
+  isolation:isolate;
+  box-sizing:border-box;
+
+  /* opcional: quita sombra externa para que nada “parezca” pasar del marco */
+  box-shadow: none;
+}
+
+/* la decoración respeta las esquinas del hero */
+.hero::before{
+  content: none !important;        /* desactiva la capa de 'lluvia' */
+  background-image: none !important;
+}
+
+
+
+/* Imagen decorativa “cascada” dentro del hero (lado derecho) */
+.hero::after{
+  content:"";
+  position:absolute;
+  top:0; right:0; bottom:0; left:10%;  /* más presencia hacia el centro */
+  background-image: var(--hero-image);
+  background-repeat:no-repeat;
+  background-position:right -40px center;
+  background-size: var(--hero-image-size, 850px) auto;
+  opacity: var(--hero-image-opacity, .95);
+  pointer-events:none;
+  z-index:0;
+
+}
+
+/* Contenido encima del fondo */
+.heroInner{
+  position:relative;
+  z-index:1;
+  display:flex;
+  flex-direction:column;
+  gap:1rem;
+  align-items: flex-start !important;  /* evita que el botón se estire/centre raro */
+  gap: .85rem;
+}
+
+.heroTitle {
+  font-size: clamp(28px, 4.5vmin, 40px);
+  color: #fff;
+  font-weight: 900;
+  margin: 0;
+}
+
+.heroSubtitle {
+  color: #ffffffd9;
+  font-size: 1rem;
+  margin: 0 0 1rem;
+  max-width: 600px;
+}
+
+.heroChips {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.chip {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.85rem;
+  border-radius: 999px;
+  padding: 6px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(2px);
+}
+
+/* Botón Jugar — pill limpio, sin sombra pesada */
+.playBtn{
+  display:inline-flex !important;
+  align-items:center; justify-content:center;
+  height:46px !important; padding:0 20px !important;
+  border-radius:999px !important; border:0 !important;
+
+  /* color sólido */
+  background:#ff7e79 !important;          /* naranja coral */
+  background-image:none !important;
+
+  color:#fff !important; font-weight:800; font-size:.95rem;
+  letter-spacing:.2px;
+
+  /* Sombra MUY suave (adiós “ovalito” oscuro) */
+  box-shadow:0 4px 10px rgba(13,30,55,.12) !important;
+
+  /* leve brillo en el borde superior para volumen sin 3D exagerado */
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.28),
+    0 4px 10px rgba(13,30,55,.12) !important;
+
+  align-self:flex-start !important; width:auto !important; min-width:132px;
+  cursor:pointer; transition:transform .12s ease, filter .2s ease;
+  margin-top:.5rem;
+}
+.playBtn:hover{ transform:translateY(-1px); filter:brightness(1.03); }
+
+
+
+/* Defensa extra por si quedó alguna regla global suelta */
+button[class*="playBtn"]{
+  width:auto !important;
+  background-image:none !important;
+}
+
+
+/* ===== Tarjetas blancas debajo del hero ===== */
+.infoSection{
+  width:100%;
+  max-width:100%;      /* 👈 igual ancho que el hero */
+  margin: 1.25rem 0 0; /* dentro del frame ya no necesitas auto */
+  padding: 0 2px 1rem;
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap:1.5rem;
+}
+
+
+.infoCard {
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #e6e9ef;
+  padding: 1.2rem 1.4rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+.infoCard::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 4px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  background: linear-gradient(90deg, #ff6aa6 0%, #ff7e79 50%, #ffa25f 100%);
+}
+
+.infoCard h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #111;
+}
+
+.infoBody {
+  color: #374151;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+/* Responsivo */
+@media (max-width: 980px){
+  .heroInner{ grid-template-columns: 1fr; }
+}
+
+/* === CONTENEDOR exterior azul claro === */
+/* Marco azul claro que contiene TODO el hero */
+.frame {
+  width: 100%;
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 26px;
+  background: #eef3f7;              /* azul claro */
+  border-radius: 20px;
+  box-shadow: 0 14px 36px rgba(13,30,55,.10);
+  position: relative;
+  overflow: hidden;                 
+  box-sizing: border-box;
+}
+
+/* ===== Overlay y modal del mini-tutorial ===== */
+.overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 13, 27, 0.55);
+  display: grid;
+  place-items: center;
+  z-index: 1000;
+  padding: 16px;
+}
+/*
+.tutorialModal{
+  width: min(640px, 96vw);
+  background: linear-gradient(145deg, #fffdfd, #fff7f8); 
+  border-radius: 18px;
+  box-shadow: 0 25px 60px rgba(13,30,55,.25);
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  animation: fadeIn .22s ease-out;
+  border: 2px solid rgba(255,255,255,.7);
+}
+
+
+.tutoHeader{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid #f2f4f7;
+}
+
+.tutoBadge{
+  font-weight: 800;
+  font-size: .85rem;
+  background: #fff0f3;          
+  color: var(--rose);
+  padding: 6px 12px;
+  border-radius: 999px;
+  box-shadow: 0 2px 6px rgba(255,106,166,.15);
+}
+
+
+.tutoCloseArea{ display:flex; align-items:center; gap:10px; }
+
+
+.tutoSkip{
+  background: transparent;
+  color: var(--rose);
+  border: 0;
+  font-weight: 700;
+  font-size: .92rem;
+  cursor: pointer;
+  transition: opacity .2s;
+}
+.tutoSkip:hover{ opacity:.8; }
+
+.tutoClose{
+  background: transparent;
+  border: 0;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--coral);
+}
+
+.tutoClose{
+  background: transparent;
+  border: 0;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  color: #5b677a;
+}
+
+.tutoBody{
+  padding: 18px 20px 6px;
+}
+.tutoStepTitle{
+  margin: 0 0 6px;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+.tutoStepText{
+  margin: 0 0 12px;
+  color: #334155;
+  line-height: 1.55;
+}
+
+.tutoMedia{
+  display: grid;
+  place-items: center;
+  margin: 8px auto 4px;
+  max-width: 560px;
+}
+.tutoImg{ max-width: 100%; height: auto; border-radius: 12px; }
+.tutoVideo{ width: 100%; max-width: 560px; border-radius: 12px; outline: none; }
+
+.tutoFooter{
+  padding: 12px 16px 16px;
+  display: grid;
+  gap: 10px;
+  border-top: 1px solid #eef1f6;
+}
+.tutoDots{
+  display: flex; gap: 8px; justify-content: center; align-items: center;
+}
+.dot, .dotActive{
+  width: 8px; height: 8px; border-radius: 999px; border: 0; cursor: pointer;
+  background: #dfe6ee;
+}
+.dotActive{ background: #ff7e79; }
+
+.tutoActions{
+  display: flex; gap: 10px; justify-content: center;
+}
+.tutoNav{
+  background: #fff4f5;         
+  color: var(--ink-1);
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .2s;
+}
+.tutoNav:hover{ background: var(--rose-1); }
+
+.tutoPrimary{
+  background: linear-gradient(90deg, var(--coral) 0%, var(--rose) 50%, var(--orange) 100%);
+  color:#fff;
+  border:0;
+  border-radius:999px;
+  padding:10px 18px;
+  font-weight:800;
+  cursor:pointer;
+  box-shadow:0 6px 18px rgba(255,120,96,.30);
+  transition: transform .15s ease, filter .2s ease;
+}
+.tutoPrimary:hover{ transform: translateY(-1px); filter: brightness(1.05); }
+
+
+.tutoSkipRow{
+  display: flex; gap: 8px; align-items: center; justify-content: center;
+  color: #475569; font-size: .9rem;
+}
+
+@keyframes fadeIn{
+  from{ opacity: 0; transform: translateY(6px) scale(.98); }
+  to{ opacity: 1; transform: translateY(0) scale(1); }
+}
+
+*/
+
+/* Contenedor principal del modal */
+.tutorialModal{
+  background: linear-gradient(145deg, #fff8f9, #fdfdfd);
+  border-radius: 24px;
+  box-shadow: 0 18px 50px rgba(0,0,0,.12);
+  width: min(680px, 96vw);
+  max-height: min(86vh, 720px);         /* 👈 alto máximo */
+  display: grid;
+  grid-template-rows: auto 1fr auto;    /* header | content (scroll) | footer */
+  padding: 0;                            /* padding ahora por secciones */
+  overflow: hidden;                      /* bordes limpios */
+  color: #334155;
+  animation: fadeIn .35s ease;
+}
+
+.tutorialHeader{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:16px 20px;   
+}
+
+.tutoCloseArea{
+  margin-left:auto;          /* empuja a la derecha */
+  display:flex;
+  align-items:center;
+  gap:10px;
+  white-space:nowrap;
+  flex-shrink:0;
+}
+
+.tutorialContent{
+  padding: 12px 20px 0;                  
+  overflow: auto;
+}
+
+
+.tutorialHeader h2 {
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: #ff5f8e;
+}
+
+.tutorialHeader button {
+  background: transparent;
+  border: none;
+  color: #9ca3af;
+  font-weight: 600;
+  cursor: pointer;
+}
+.tutorialHeader button:hover { color: #ff5f8e; }
+
+/* Tarjeta de contenido */
+.tutorialStep{
+  background:#fff;
+  border-radius:18px;
+  border:1px solid #eef2f7;
+  padding: clamp(16px, 3vmin, 22px);
+  box-shadow: 0 6px 16px rgba(0,0,0,.06);
+  text-align:center;
+  animation: popIn .25s ease;
+}
+.tutorialStep h3{ margin:0 0 6px; }
+.tutorialStep p{ margin:0 0 12px; }
+
+
+.tutorialStep h3 {
+  color: #1e293b;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.tutorialStep p {
+  color: #475569;
+  font-size: 1.05rem;
+}
+
+/* Imagen o GIF */
+.tutorialMedia{
+  margin: 10px auto 4px;
+  border-radius:14px;
+  overflow:hidden;
+  aspect-ratio:16/9;          /* 👈 proporción fija */
+  max-width: 560px;
+  background:#f7fafc;
+  border:1px solid #eef2f7;
+  box-shadow: 0 8px 20px rgba(0,0,0,.06);
+}
+.tutorialMedia img, .tutorialMedia video{
+  width:100%; height:100%; object-fit:cover; display:block;
+}
+
+
+/* Botones inferiores */
+.tutoFooter{                     /* puedes renombrar a .tutorialFooter si prefieres */
+  padding: 12px 20px 16px;
+  border-top: 1px solid #eef2f7;
+}
+
+.tutorialDots{
+  display:flex; justify-content:center; gap:10px;
+  margin: 6px 0 12px;
+}
+.tutorialDot{ width:10px; height:10px; border-radius:999px; background:#e6edf5; }
+.tutorialDotActive{
+  width:26px; height:10px; border-radius:999px;
+  background: linear-gradient(120deg,#ff7e79,#ff6aa6);
+  box-shadow: 0 4px 12px rgba(255,106,166,.35);
+}
+
+.tutorialControls{
+  display:flex; gap:12px; align-items:center; justify-content:space-between;
+}
+
+.tutorialBtn{ padding:.72rem 1.4rem; border-radius:999px; font-weight:700; border:0; }
+.tutorialBtn.prev{ background:#f3f6fa; color:#475569; }
+.tutorialBtn.prev:hover{ background:#e9eef5; }
+.tutorialBtn.next{
+  background: linear-gradient(135deg,#ff7e79,#ff6aa6); color:#fff;
+  box-shadow:0 8px 18px rgba(255,106,166,.35);
+}
+.tutorialBtn.next:hover{ filter:brightness(1.06); }
+
+
+
+/* Badge “Minitutorial” (píldora en el header) */
+.tutoBadge{
+  font-weight:800; font-size:.85rem;
+  background:#fff0f3; color:#ff6aa6;
+  padding:6px 12px; border-radius:999px;
+  box-shadow:0 2px 6px rgba(255,106,166,.15);
+}
+/* Área derecha: Omitir + X */
+/* Estilos de los botones a la derecha */
+.tutoSkip{
+  background:transparent;
+  border:0;
+  color:#ff6aa6;
+  font-weight:700;
+  cursor:pointer;
+}
+.tutoSkip:hover{ color:#e75d9b; }
+
+.tutoClose{
+  background:transparent;
+  border:0;
+  font-size:20px;
+  line-height:1;
+  cursor:pointer;
+  color:#96a0af;
+}
+.tutoClose:hover{ color:#6f7a88; }
+
+/* Responsive pequeño */
+/*@media (max-width:480px){
+  .tutorialHeader{ gap:8px; }
+  .tutoCloseArea{ gap:8px; }
+}*/
+
+
+
+/* Animaciones */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+._canvasContainer_1rhbx_33 {
+  background: #eef3f7 !important; /* mismo azul del frame */
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05);
+}
+
+/* Desactiva marco/sombra de la media solo para este juego */
+.tutorialModal[data-game="recuerda-objetos"] .tutorialMedia{
+  border: 0;
+  box-shadow: none;
+  background: transparent;
+  aspect-ratio: auto;   /* la imagen decide su propio alto */
+  max-width: 560px;     /* evita crecer de más */
+  margin-top: 8px;
+}
+
+/* Un poco menos de “volumen” en la tarjeta para que no compita */
+.tutorialModal[data-game="recuerda-objetos"] .tutorialStep{
+  border: 1px solid #f3f5f9;
+  box-shadow: 0 4px 12px rgba(0,0,0,.04);
+  padding: clamp(14px, 2.6vmin, 20px);
+}
+
+

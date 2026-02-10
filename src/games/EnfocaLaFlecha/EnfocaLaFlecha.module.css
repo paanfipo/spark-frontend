@@ -1,0 +1,96 @@
+/* Contenedor principal siguiendo el estándar de Matriz de Memoria */
+.gameContainer {
+  width: calc(100% - 125px);
+  height: 600px;
+  max-height: 85vh;
+  margin-right: 60px;
+  margin-left: auto;
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+  border-radius: 20px;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Zona superior de datos */
+.hud {
+  flex: 0 0 auto;
+  width: 100%;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-around;
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+/* Área central de las flechas */
+.grid {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px; /* Espacio entre flechas */
+}
+
+/* Estilos para el conteo regresivo */
+.countdown {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 150px;
+  font-weight: 900;
+  z-index: 100;
+  color: #ffffff;
+  text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Botón de pausa estándar */
+.pauseButton {
+  position: absolute;
+  top: 25px;
+  left: 15px;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 8px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.pauseButton:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.pauseButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Estilo para las flechas (estímulos) */
+.arrowWrapper {
+  transition: transform 0.1s ease-out;
+}
+
+/* Efecto de feedback visual rápido (opcional, para error) */
+.errorShake {
+  animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-10px); }
+  75% { transform: translateX(10px); }
+}

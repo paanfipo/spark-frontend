@@ -1,0 +1,237 @@
+.gameContainer {
+  width: calc(100% - 125px);
+  height: 600px;
+  max-height: 85vh;
+  margin-right: 60px;
+  margin-left: auto;
+  background: #2c3e50;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hud {
+  width: 100%;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+  padding-left: 80px;
+}
+
+.mainArea {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+}
+
+.grid {
+  display: grid;
+  gap: 8px;
+  background: #34495e;
+  padding: 12px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.locked {
+  background-color: #95a5a6 !important;
+  opacity: 0.8;
+}
+
+.lockIcon {
+  position: absolute;
+  font-size: 1.2rem;
+  z-index: 10;
+  bottom: 2px;
+  right: 2px;
+}
+
+.cell {
+  background: #ecf0f1;
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* AGUA */
+.source { 
+  background-color: #3498db !important;
+  border: 3px solid #2980b9;
+  cursor: default !important;
+}
+
+/* PLANTA */
+.target { 
+  background-color: #27ae60 !important;
+  border: 3px solid #219150;
+  cursor: default !important;
+}
+
+.icon {
+  position: absolute;
+  z-index: 10;
+  font-size: 2.2rem;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+  pointer-events: none;
+}
+
+/* =========================
+   TUBERÍAS: ahora por IMAGEN (no pseudo-elementos)
+   ========================= */
+
+/*.pipeBody {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transition: transform 0.2s ease;
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 86% 86%;
+
+}*/
+
+.pipeBody {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transition: transform 0.2s ease;
+}
+
+
+/* Cada clase asigna su imagen (ajuste rutas si sus assets están en otra carpeta) */
+.straight {
+  background-image: url("./pipe.png");
+}
+
+.elbow {
+  background-image: url("./pipe-angle.png");
+}
+
+.tee {
+  background-image: url("./pipe-T.png");
+}
+
+.cross {
+  background-image: url("./pipe-cross.png");
+}
+
+/* =========================
+   IMPORTANTE: quitar “cañería” de agua/hojas (como usted pidió)
+   ========================= */
+.source::after,
+.target::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* =========================
+   UI
+   ========================= */
+
+.checkBtn {
+  background: #27ae60;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.checkBtn:hover { background: #2ecc71; }
+
+.pauseButton {
+  position: absolute;
+  top: 20px;
+  left: 75px;
+  z-index: 10;
+  background: rgba(0,0,0,0.2);
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.countdown {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 150px;
+  font-weight: 900;
+  z-index: 100;
+}
+
+/* =========================
+   Swap + métricas (si las usa)
+   ========================= */
+
+.selected {
+  outline: 3px solid rgba(52, 152, 219, 0.9);
+  outline-offset: -3px;
+  box-shadow: 0 0 0 3px rgba(41, 128, 185, 0.35) inset;
+}
+
+.hudMetrics {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-size: 0.9rem;
+  opacity: 0.95;
+}
+
+.footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 10px 0 0 0;
+}
+
+.helpText {
+  margin-top: 10px;
+  color: rgba(236, 240, 241, 0.85);
+  font-size: 0.9rem;
+  text-align: center;
+  max-width: 520px;
+}
+
+/* Toggle de modo (si lo implementó) */
+.modeToggle { display:flex; gap:8px; align-items:center; }
+
+.modeBtn {
+  background: rgba(255,255,255,0.12);
+  color: rgba(236,240,241,0.95);
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.modeBtnActive {
+  background: rgba(46, 204, 113, 0.35);
+  border-color: rgba(46, 204, 113, 0.55);
+}
+
+
+.flowCell { box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.7) inset; }
+.flowDeadEnd { box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.75) inset; }
+

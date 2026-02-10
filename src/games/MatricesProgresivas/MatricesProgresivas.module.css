@@ -1,0 +1,172 @@
+/* src/games/MatricesProgresivas/MatricesProgresivas.module.css */
+
+.gameContainer {
+  width: calc(100% - 125px);
+  height: 600px;
+  max-height: 85vh;
+  margin-right: 60px;
+  margin-left: auto;
+
+  background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+  border-radius: 20px;
+  color: #ffffff;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+}
+
+.hud {
+  flex: 0 0 auto;
+  width: 100%;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-around;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.stage {
+  width: 100%;
+  flex: 1 1 auto;
+  display: flex;
+  gap: 14px;
+  align-items: stretch;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.mainPanel {
+  flex: 1 1 52%;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  padding: 12px;
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.mainImage {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  user-select: none;
+  pointer-events: none;
+}
+
+.missingAsset {
+  font-weight: 700;
+  opacity: 0.85;
+  text-align: center;
+  padding: 10px;
+}
+
+.optionsGrid {
+  flex: 1 1 48%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 16px;
+  padding: 12px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.optionCard {
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.10);
+  cursor: pointer;
+  transition: transform 0.12s ease, background 0.12s ease, border 0.12s ease;
+  overflow: hidden;
+  padding: 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.optionCard:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.optionImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+  pointer-events: none;
+}
+
+.optionIndex {
+  position: absolute;
+  bottom: 8px;
+  right: 10px;
+  font-weight: 900;
+  font-size: 0.9rem;
+  opacity: 0.9;
+  background: rgba(0, 0, 0, 0.25);
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.selected {
+  border-color: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.correct {
+  border-color: rgba(46, 204, 113, 0.9);
+  background: rgba(46, 204, 113, 0.22);
+}
+
+.incorrect {
+  border-color: rgba(231, 76, 60, 0.9);
+  background: rgba(231, 76, 60, 0.22);
+}
+
+.locked {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.footer {
+  flex: 0 0 auto;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-top: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+}
+
+.countdown {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 150px;
+  font-weight: 900;
+  z-index: 100;
+}
+
+.pauseButton { position: absolute; top: 20px; left: 5px; z-index: 10; background: rgba(0,0,0,0.2); border:none; color:white; padding: 5px 10px; border-radius: 5px; cursor: pointer;}
+

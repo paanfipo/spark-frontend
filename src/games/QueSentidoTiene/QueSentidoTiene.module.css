@@ -1,0 +1,149 @@
+/* src/games/QueSentidoTiene/QueSentidoTiene.module.css */
+
+.gameContainer {
+  /* 1. CAJA FIJA (Igual a Matriz) */
+  width: calc(100% - 125px);
+  height: 600px;
+  max-height: 85vh;
+  margin-right: 60px;
+  margin-left: auto;
+  
+    background: var(--len-gradient);
+  border-radius: 20px;
+  color: #ffffff;
+  
+  /* 2. FLEXBOX VERTICAL */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+/* --- ZONA SUPERIOR (HUD) --- */
+.hud {
+  flex: 0 0 auto; 
+  width: 100%;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-weight: 700;
+  margin-bottom: 5px;
+  /* Espacio para que el puntaje no choque con el botón pausa */
+  padding-left: 80px; 
+}
+
+.hudSection {
+  flex: 1;
+  text-align: center;
+}
+
+/* --- BARRA DE TIEMPO --- */
+.timerTrack {
+  width: 100%;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.timerFill {
+  height: 100%;
+  background: #ffffff;
+  transition: width 0.1s linear;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* --- ZONA CENTRAL (PALABRA) --- */
+.mainArea {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 40px;
+}
+
+.targetWord {
+  font-size: 4rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+}
+
+/* --- INDICADORES LATERALES --- */
+.indicators {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 600px;
+  padding: 0 20px;
+}
+
+.label {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-weight: 800;
+  font-size: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+/* --- EFECTOS DE FEEDBACK --- */
+.shake {
+  animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes shake {
+  10%, 90% { transform: translate3d(-2px, 0, 0); }
+  20%, 80% { transform: translate3d(4px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+  40%, 60% { transform: translate3d(6px, 0, 0); }
+}
+
+/* --- ELEMENTOS FIJOS --- */
+.pauseButton {
+  position: absolute;
+  top: 20px;
+  left: 30px; /* Ajustado para que no se salga */
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.2);
+  border: none;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.countdown {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 150px;
+  font-weight: 900;
+  z-index: 100;
+  text-shadow: 0 0 30px rgba(0,0,0,0.3);
+}
+
+.footer {
+  flex: 0 0 auto;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}

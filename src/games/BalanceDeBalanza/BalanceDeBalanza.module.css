@@ -1,0 +1,251 @@
+/* BalanceDeBalanza.module.css */
+
+.gameContainer {
+  width: calc(100% - 125px);
+  height: 640px;
+  max-height: 90vh;
+  margin: 0 60px 0 auto;
+  background: var(--fe-gradient);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  box-sizing: border-box;
+  overflow: hidden;
+  color: #ffffff;
+  position: relative;
+}
+
+/* --- HUD --- */
+.hud {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  margin-bottom: 12px;
+  flex-shrink: 0;
+}
+
+.hudItem { display: flex; flex-direction: column; min-width: 80px; }
+.hudLabel { font-size: 0.75rem; opacity: 0.8; text-transform: uppercase; }
+.hudValue { font-size: 1.1rem; font-weight: 800; }
+
+.pauseButton {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 8px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+.pauseButton:hover { background: rgba(255, 255, 255, 0.2); }
+
+/* --- CUERPO DEL JUEGO --- */
+.gameBody {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.contentLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  height: 100%;
+}
+
+.sectionTitle {
+  font-size: 0.9rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.9;
+}
+
+/* --- REGLAS (HINTS) --- */
+.rulesSection { flex-shrink: 0; }
+.hintsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.hintCard {
+  background: #f0f2f5;
+  padding: 10px;
+  border-radius: 12px;
+  min-width: 150px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.miniScale {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+
+.miniPan {
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 8px;
+  padding: 6px;
+  min-width: 60px;
+  min-height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.miniBeam {
+  width: 12px;
+  height: 2px;
+  background: #4a5568;
+}
+
+/* --- BALANZA FINAL --- */
+.challengeSection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.finalScaleContainer {
+  display: flex;
+  align-items: flex-end;
+  gap: 25px;
+  margin-bottom: 20px;
+}
+
+.mainPan {
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-radius: 18px;
+  min-width: 180px;
+  min-height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  position: relative;
+}
+
+.targetEmpty {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.mainBeam {
+  width: 50px;
+  height: 4px;
+  background: white;
+  position: relative;
+  margin-bottom: 25px;
+}
+
+.fulcrum {
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0; 
+  height: 0; 
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 18px solid white;
+}
+
+/* --- OPCIONES --- */
+.optionsGrid {
+  display: flex;          /* Cambiamos de grid a flex para mejor centrado */
+  flex-wrap: wrap;        /* Permite que bajen si no hay espacio */
+  justify-content: center; /* ✅ ESTO centra las opciones horizontalmente */
+  gap: 12px;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;         /* Centra el contenedor dentro del juego */
+  padding-bottom: 10px;
+}
+
+
+.optionBtn {
+  background: white;
+  border: none;
+  border-radius: 16px;
+  padding: 10px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+.optionBtn:hover:not(:disabled) {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+}
+
+.optionBtn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.optionLabel {
+  font-size: 0.7rem;
+  font-weight: 900;
+  color: #718096;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.optionContent {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* --- SHAPES (SVG) --- */
+.shapesRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  align-items: center;
+}
+
+.sm .shape { width: 22px; height: 22px; }
+.md .shape { width: 32px; height: 32px; }
+
+.shape {
+  stroke: #2d3748;
+  stroke-width: 2.5;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* --- COUNTDOWN --- */
+.countdownWrapper { flex: 1; display: grid; place-items: center; }
+.countdown {
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.3);
+  border: 3px solid white;
+  display: grid; place-items: center;
+  font-size: 3rem; font-weight: 900;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 1200px) {
+  .optionsGrid { grid-template-columns: repeat(2, 1fr); }
+  .gameContainer { width: calc(100% - 40px); margin: 0 auto; }
+}

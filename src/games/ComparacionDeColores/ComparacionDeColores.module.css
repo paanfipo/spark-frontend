@@ -1,0 +1,108 @@
+/* --- CONTENEDOR PRINCIPAL (CAJA VERDE) --- */
+.gameContainer {
+  width: calc(100% - 125px);
+  height: 600px;
+  max-height: 85vh;
+  margin-right: 60px;
+  margin-left: auto;
+  background: var(--mem-gradient);
+  border-radius: 20px;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+}
+
+/* --- HUD (SUPERIOR) --- */
+.hud {
+  flex: 0 0 auto;
+  width: 100%;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-around;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* --- ZONA CENTRAL (EL JUEGO) --- */
+.gameBody {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.stimulusArea {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  width: 100%;
+}
+
+.wordDisplay {
+  font-size: 4.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+  min-width: 300px;
+  text-align: center;
+}
+
+.colorPatch {
+  width: 150px;
+  height: 150px;
+  border-radius: 20px;
+  border: 4px solid white;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* --- BOTONES DE RESPUESTA --- */
+.buttonGroup {
+  display: flex;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+.btnResponse {
+  width: 150px;
+  height: 70px;
+  border: none;
+  border-radius: 18px;
+  font-size: 1.5rem;
+  font-weight: 800;
+  cursor: pointer;
+  color: white;
+  transition: transform 0.1s;
+}
+
+.btnYes { background-color: #2ecc71; box-shadow: 0 5px 0 #27ae60; }
+.btnNo { background-color: #e74c3c; box-shadow: 0 5px 0 #c0392b; }
+
+.btnResponse:active { transform: translateY(5px); box-shadow: none; }
+
+/* --- FOOTER / INSTRUCCIONES --- */
+.footer {
+  flex: 0 0 auto;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* --- OTROS --- */
+.countdown { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 150px; font-weight: 900; z-index: 100; }
+.pauseButton { position: absolute; top: 20px; left: 75px; z-index: 10; background: rgba(0,0,0,0.2); border:none; color:white; padding: 5px 10px; border-radius: 5px; cursor: pointer;}

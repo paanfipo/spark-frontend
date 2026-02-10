@@ -1,0 +1,166 @@
+/* Contenedor principal */
+.wrap{
+  background:#fff6f1;                 /* melocotón suave */
+  border:1px solid #ffe2d5;
+  border-radius:14px;
+  padding: 24px 28px;
+  width: 100%; 
+  min-height: 100%; 
+  box-sizing: border-box; 
+
+}
+
+/* Encabezados */
+.title{
+  font-size:32px;
+  font-weight:800;
+  text-align:center;
+  margin:4px 0 2px;
+  color:#10243b;                       /* azul petróleo */
+}
+.subtitle{
+  text-align:center;
+  margin:0 0 16px;
+  color:#6b7a8a;
+  font-weight:600;
+}
+
+/* Resumen superior (3 tarjetas) */
+.topRow{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin:10px 0 18px;
+}
+.topCard{
+  background:#ffe9df;
+  border:1px solid #ffd3c2;
+  border-radius:12px;
+  padding:12px;
+  text-align:center;
+}
+.topIcon{ font-size:18px; }
+.topLabel{
+  font-weight:700;
+  color:#a45c45;
+  margin-top:4px;
+}
+.topValue{
+  font-size:28px;
+  font-weight:800;
+  color:#10243b;
+}
+
+/* Sección de métricas */
+.sectionTitle{
+  margin:6px 0 10px;
+  font-size:16px;
+  font-weight:800;
+  color:#10243b;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+.card{
+  background:#ffffff;
+  border:1px solid #e7eef6;
+  border-radius:12px;
+  padding:12px;
+}
+.cardHeader{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:#0f172a;
+  font-weight:700;
+}
+.badge{
+  display:inline-grid;
+  place-items:center;
+  width:28px;
+  height:28px;
+  border-radius:8px;
+  background:#ffe3d7;
+  border:1px solid #ffd1c1;
+  font-size:14px;
+}
+.cardLabel{ line-height:1; }
+.cardValue {
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: center;   /* 🔹 centra horizontal */
+  display: flex;
+  justify-content: center; /* 🔹 centra horizontal con flex */
+  align-items: center;     /* 🔹 centra vertical */
+  min-height: 64px;        /* 🔹 asegura altura mínima uniforme */
+  color: #10243b; 
+  margin: 12px 0;          /* 🔹 separación del borde */
+}
+
+.cardHelper{
+  font-size:12px;
+  color:#6b7a8a;
+}
+
+/* Bloque de tips */
+.tipsBlock{
+  margin-top:14px;
+  background:#fff;
+  border:1px solid #e7eef6;
+  border-radius:12px;
+  padding:14px;
+}
+.tipsTitle{
+  font-weight:800;
+  margin-bottom:6px;
+  color:#10243b;
+}
+.tipsList{
+  margin:0;
+  padding-left:18px;
+  color:#334155;
+}
+
+/* Footer opcional (para CTA) */
+.footer{
+  display:flex;
+  justify-content:center;
+  margin-top:14px;
+}
+
+
+.cta {
+  background: linear-gradient(135deg, #ff66b2, #ff9966); /* rosado → naranja */
+  color: #fff;
+  font-weight: bold;
+  font-size: 1rem;
+  border: none;
+  border-radius: 999px; /* redondeado tipo “píldora” */
+  padding: 10px 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.25);
+}
+
+.cta:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+
+
+/* Responsivo */
+@media (max-width: 860px){
+  .topRow{ grid-template-columns:1fr; }
+  .grid{ grid-template-columns:1fr 1fr; }
+}
+@media (max-width: 520px){
+  .grid{ grid-template-columns:1fr; }
+}

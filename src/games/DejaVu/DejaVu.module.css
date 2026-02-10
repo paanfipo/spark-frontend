@@ -1,0 +1,250 @@
+/* src/games/DejaVu/DejaVu.module.css */
+:root {
+  --theme-bg: #f0f4f8;
+  --theme-text: #2c3e50;
+  --theme-text-light: #7f8c8d;
+  --theme-ui-bg: #ffffff;
+  --theme-border: #dce4ec;
+  
+  --correct-color: #2ecc71;
+  --incorrect-color: #e74c3c;
+  --highlight-color: #3498db; /* Para "Sí" */
+  --warn-color: #f39c12; /* Para "No" */
+}
+
+.gameContainer {
+  width: calc(100% - 60px);
+  min-height: clamp(520px, 70vh, 760px);
+  max-height: none;
+  margin-right: 60px;
+  margin-left: auto;
+  background-color: #101d2d;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  justify-content: flex-start;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: hidden;
+  color: var(--theme-text);
+}
+
+/*
+.gameContainer {
+  width: calc(100% - 60px);
+
+  min-height: clamp(520px, 70vh, 760px);
+  max-height: none;
+  margin-right: 60px;
+  margin-left: auto;
+  background-color: #101d2d;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  color: #ffffff;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: hidden;
+  justify-content: space-between;
+}*/
+
+
+/* ----- Secuencia regresiva ----- */
+.countdown {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ffffff; /* Blanco puro */
+  font-size: clamp(120px, 30vmin, 220px);
+  font-weight: 900;
+  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  z-index: 100;
+}
+
+@keyframes pop {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-10px); }
+  75% { transform: translateX(10px); }
+}
+
+.pauseButton {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.hud {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--theme-ui-bg);
+  border: 1px solid var(--theme-border);
+  border-radius: 14px;
+  width: fit-content;
+  max-width: clamp(280px, 90vmin, 600px); /* Un poco más ancho para más métricas */
+  margin: 0.5rem auto 0.75rem;
+  padding: clamp(8px, 2vmin, 16px);
+  font-size: clamp(12px, 2.2vmin, 16px);
+  gap: clamp(10px, 2.5vmin, 20px);
+  color: var(--theme-text);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.statItem { text-align: center; }
+.statItem strong { color: var(--theme-text-light); }
+
+
+.instructions {
+  color: #ffffff;
+  font-size: clamp(1.2rem, 3vmin, 1.6rem); 
+  font-weight: 700;
+  text-align: center;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  max-width: 80%;
+  margin: 16px auto 0;
+  flex-shrink: 0;  
+  margin-top: 12px;
+  margin-bottom: 8px;
+}
+
+/* --- Área de Juego --- */
+/* Contenedor principal que centra todo verticalmente */
+.gameArea {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Columna que agrupa Visor + Texto + Botones */
+.displayContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px; /* Espacio equilibrado entre elementos */
+  width: 100%;
+}
+
+/* El cuadro blanco donde aparecen los símbolos */
+.viewer {
+  width: clamp(240px, 45vmin, 380px);
+  aspect-ratio: 1 / 1;
+  background-color: #ffffff;
+  border-radius: 28px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4); /* Sombra profunda para resaltar */
+}
+
+/* Estilo para los símbolos (negros sobre fondo blanco) */
+.emoji {
+  font-size: clamp(100px, 20vmin, 240px);
+  color: #101d2d;
+  font-family: Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+/* Texto debajo del cuadro blanco */
+/*
+.instructions {
+  color: #ffffff;
+  font-size: clamp(1.3rem, 3.5vmin, 2rem);
+  font-weight: 800;
+  text-align: center;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  min-height: 2.5rem; 
+}*/
+
+/* Contenedor de botones Sí/No */
+.responseButtons {
+  display: flex;
+  gap: 24px;
+  transition: opacity 0.3s ease, visibility 0.3s;
+}
+
+/* Botones estilo 'píldora' grandes */
+.responseButton {
+  padding: 18px 45px;
+  font-size: 1.6rem;
+  font-weight: 900;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 140px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.yesButton { background-color: #2ecc71; color: white; }
+.noButton { background-color: #e74c3c; color: white; }
+
+.responseButton:hover:not(:disabled) {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.responseButton:disabled {
+  opacity: 0.5;
+  filter: grayscale(0.5);
+  cursor: not-allowed;
+}
+
+/* Feedback Overlay (Check y Equis) */
+.feedbackOverlay {
+  position: absolute;
+  font-size: clamp(7rem, 20vmin, 10rem);
+  z-index: 10;
+  pointer-events: none;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+  animation: popFeedback 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popFeedback {
+  0% { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Contenedor de la barra */
+.progressContainer {
+  width: clamp(240px, 45vmin, 380px); /* Mismo ancho que el visor */
+  height: 8px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* La barra que se llena */
+.progressBar {
+  height: 100%;
+  background-color: #3498db; /* Azul brillante turquí */
+  transition: width 0.4s ease-out;
+  box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+}
+
+.rotated { transform: rotate(90deg); }

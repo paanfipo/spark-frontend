@@ -1,0 +1,207 @@
+/*Controlar el tamaño de los circulos de la secuencia */
+
+/* ===== BASE VISUAL PARA JUEGOS DE MEMORIA ===== */
+:root {
+  /* ... tus variables de color no cambian ... */
+  --game-bg: #2c3e50;
+  --cell-bg: #34495e;
+  --text-color: #ecf0f1;
+  --pattern-color: #3498db;
+  --selected-color: #9b59b6;
+  --correct-color: #b3ffb3;
+  --incorrect-color: #ffb3b3;
+  --omission-color: #ffe680;
+  --error-mark-color: #d60000;
+}
+
+.gameContainer {
+  width: 100%;
+  min-height: 520px;
+  background-color: var(--game-bg);
+  color: var(--text-color);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  padding: 3vmin;
+  box-sizing: border-box;
+  overflow: visible;
+  position: relative;
+}
+
+.hud {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 90%;
+  font-size: clamp(14px, 3vmin, 20px);
+  font-weight: bold;
+}
+
+
+/* Botón de Pausa */
+.pauseButton {
+  position: absolute;
+  top: -12px;
+  left: -12px;
+  z-index: 10;
+  background: rgba(255,255,255,.15);
+  color: #fff;
+  border: 0;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.pauseButton:hover {
+  background: rgba(255,255,255,.25);
+}
+
+
+/* Conteo */
+.countdown {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: clamp(100px, 25vmin, 200px);
+  line-height: 1;
+  font-weight: 900;
+  color: #ffffff;
+  text-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  pointer-events: none;
+  animation: pop 0.8s ease infinite;
+}
+
+@keyframes pop {
+  0%   { transform: translate(-50%, -50%) scale(0.7); opacity: 0; }
+  50%  { transform: translate(-50%, -50%) scale(1.05); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2.2vmin;
+  width: min(680px, 85%);
+  margin-inline: auto;
+  margin-top: 4vmin;
+  justify-items: center;
+  align-items: center;
+}
+
+.cell {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 9999px;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  place-items: center;
+  font-weight: 800;
+
+  font-size: clamp(22px, 5vmin, 36px); /* números grandes */
+  line-height: 1;              
+  padding-top: 0.05em;         
+  color: #fff;
+
+  background: linear-gradient(145deg, #3a7bd5, #6a11cb);
+  box-shadow: 0 10px 24px rgba(28,45,94,.25),
+              inset 0 1px 0 rgba(255,255,255,.10);
+  border: none;
+  cursor: pointer;
+  transition: transform .15s ease;
+
+  position: relative; /* Importante para los ::after de feedback */
+  overflow: hidden;   /* Para que el efecto de brillo no se salga */
+
+
+}
+
+.cell:hover {
+  transform: scale(1.06);
+}
+
+
+/* Iluminado en la secuencia */
+.pattern{
+  color: #ffffff;                      /* número SIEMPRE visible */
+  transform: scale(1.08);              /* leve enfasis, opcional */
+  background: linear-gradient(145deg, #00d2ff, #00ffae); /* turquesa→menta */
+  box-shadow:
+    0 0 28px rgba(0,198,255,.35),
+    0 10px 24px rgba(0,0,0,.12);
+  animation: blinkColor 420ms ease;    /* parpadeo suave sin opacidad */
+}
+
+/* Seleccionado por el jugador */
+.selected{
+  background: linear-gradient(145deg, #12d8b5, #06beb6);
+  box-shadow: 0 0 20px rgba(18,216,181,.55);
+}
+
+/* Feedback */
+.correct{
+  background: linear-gradient(145deg, #21d44c, #14b83c);
+  box-shadow: 0 0 22px rgba(33,212,76,.60);
+}
+.correct::after{
+  content:"✓"; position:absolute; inset:0; display:grid; place-items:center;
+  color:#0f5132; font-weight:800; font-size:1.6rem;
+}
+
+.incorrect{
+  background: linear-gradient(145deg, #ff5b66, #ff3b4a);
+  box-shadow: 0 0 22px rgba(255,59,74,.55);
+}
+.incorrect::after{
+  content:"✕"; position:absolute; inset:0; display:grid; place-items:center;
+  color:#7a0b12; font-weight:900; font-size:1.6rem;
+}
+
+/* Errores de omisión en feedback (faltó tocar una del patrón) */
+.omission {
+  background: var(--omission-color);
+  box-shadow: inset 0 0 0 3px rgba(245, 158, 11, .6); /* ámbar */
+}
+
+/* Revelar el resto del patrón en feedback, sin marcar error/ok */
+.patternReveal {
+  background: rgba(255, 255, 255, 0.10);
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.20);
+}
+
+.footer {
+  margin-top: 3vmin;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.sequenceInfo {
+  font-size: clamp(14px, 2.6vmin, 18px);
+  font-weight: 600;
+  opacity: 0.85;
+}
+
+.instructions {
+  font-size: clamp(16px, 3.2vmin, 22px);
+  font-weight: 700;
+  opacity: 0.95;
+}
+
+.inputPreview {
+  margin-bottom: 1vmin;
+  font-size: clamp(14px, 2.5vmin, 18px);
+  opacity: 0.9;
+}
+
+
+
+

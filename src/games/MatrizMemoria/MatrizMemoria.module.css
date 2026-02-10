@@ -1,0 +1,118 @@
+/* src/games/MatrizMemoria/MatrizMemoria.module.css */
+
+.gameContainer {
+  /* 1. CAJA VERDE FIJA */
+  width: calc(100% - 125px);
+  height: 600px; /* Altura Fija */
+  max-height: 85vh; /* Seguridad para pantallas pequeñas */
+  margin-right: 60px;
+  margin-left: auto;
+  
+  background: var(--mem-gradient);
+  border-radius: 20px;
+  color: #ffffff;
+  
+  /* 2. FLEXBOX VERTICAL */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  box-sizing: border-box;
+  overflow: hidden; /* Corta cualquier cosa que intente salirse */
+}
+
+/* --- ZONA SUPERIOR (PUNTAJES) --- */
+.hud {
+
+  flex: 0 0 auto; 
+  width: 100%;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-around;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* --- ZONA CENTRAL (CONTENEDOR DE LA MATRIZ) --- */
+
+.grid {
+
+  max-height: 450px; 
+  max-width: 450px;
+
+  width: 100%; 
+  aspect-ratio: 1 / 1; 
+
+  /* Centrado */
+  margin: 0 auto; 
+  align-self: center;
+
+  display: grid;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 10px;
+  border-radius: 15px;
+  box-sizing: border-box;
+}
+
+/* --- CELDAS --- */
+.cell {
+  /* Llenan el hueco que el Grid les da */
+  width: 100%;
+  height: 100%;
+  
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cell:hover {
+  background-color: #243b55;
+}
+
+/* --- ZONA INFERIOR (MENSAJES) --- */
+.footer {
+  /* Ocupa su espacio natural y no se encoge */
+  flex: 0 0 auto;
+  width: 100%;
+  height: 60px; /* Altura fija para los mensajes */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+/* --- CLASES DE ESTADO (COLORES) --- */
+/*.pattern { background-color: #f1c40f !important; box-shadow: 0 0 15px rgba(241, 196, 15, 0.6); }
+.selected { background-color: #ffffff !important; transform: scale(0.95); }
+.correct { background-color: #2ecc71 !important; }
+.incorrect { background-color: #e74c3c !important; }*/
+
+/* --- CLASES DE ESTADO (COLORES) --- */
+/* Aumentamos la especificidad encadenando clases para evitar !important */
+.cell.pattern { 
+  background-color: #f1c40f; 
+  box-shadow: 0 0 15px rgba(241, 196, 15, 0.6); 
+}
+.cell.selected { 
+  background-color: #ffffff; 
+  transform: scale(0.95); 
+}
+.cell.correct { 
+  background-color: #2ecc71; 
+}
+.cell.incorrect { 
+  background-color: #e74c3c; 
+}
+
+.omission { border: 3px solid #f1c40f; background: transparent; }
+
+/* Otros */
+.countdown { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 150px; font-weight: 900; z-index: 100; }
+.pauseButton { position: absolute; top: 20px; left: 75px; z-index: 10; background: rgba(0,0,0,0.2); border:none; color:white; padding: 5px 10px; border-radius: 5px; cursor: pointer;}

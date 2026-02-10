@@ -1,0 +1,89 @@
+.gameContainer {
+  width: calc(100% - 125px);
+  height: 600px;
+  max-height: 85vh;
+  margin-right: 60px;
+  margin-left: auto;
+  background: #1a1a2e;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  position: relative;
+  overflow: hidden;
+  cursor: crosshair;
+}
+
+.hud {
+  flex: 0 0 auto;
+  width: 100%;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  padding-left: 80px;
+}
+
+.mainArea {
+  flex: 1;
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.targetLine {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.targetCenter {
+  width: 80px;
+  height: 80px;
+  border: 4px solid #38ef7d;
+  border-radius: 50%;
+  background: rgba(56, 239, 125, 0.1);
+  box-shadow: 0 0 20px rgba(56, 239, 125, 0.4);
+}
+
+.projectile {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: #f1c40f;
+  border-radius: 50%;
+  box-shadow: 0 0 15px #f1c40f;
+  transform: translateX(-50%);
+}
+
+.footer {
+  flex: 0 0 auto;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.pauseButton {
+  position: absolute; top: 20px; left: 75px; z-index: 10;
+  background: rgba(255,255,255,0.1); border:none; color:white;
+  padding: 5px 12px; border-radius: 5px; cursor: pointer;
+}
+
+.countdown {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  font-size: 150px; font-weight: 900; z-index: 100; color: #38ef7d;
+}
