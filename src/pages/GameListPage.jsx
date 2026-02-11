@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { api } from '../api';
 import styles from './GameList.module.css';
 
 // Función helper para convertir texto a un formato de URL amigable
@@ -26,11 +26,8 @@ function GameListPage() {
 
   useEffect(() => {
     const fetchGames = async () => {
-      const token = localStorage.getItem('token');
       try {
-        const response = await axios.get('http://localhost:8000/games/', {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const response = await api.get('/games/');
         setGames(response.data);
       } catch (error) {
         console.error('Error al obtener la lista de juegos', error);
@@ -42,13 +39,8 @@ function GameListPage() {
   }, []);
 
   const handlePlayClick = async (game) => {
-    const token = localStorage.getItem('token');
     try {
-      const response = await axios.post(
-        `http://localhost:8000/games/${game.id}/start-play`,
-        {},
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+      const response = await api.post(`/games/${game.id}/start-play`);
       const gameplayId = response.data.id;
 
       const gameCode = slugify(game.name);
