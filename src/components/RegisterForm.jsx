@@ -1,7 +1,8 @@
 // src/components/RegisterForm.jsx
 import React, { useState } from 'react';
-import axios from 'axios';
 import styles from './Forms.module.css';
+
+import { api } from '../api';
 
 function RegisterForm({ onRegisterSuccess }) {
   const [formData, setFormData] = useState({
@@ -20,7 +21,7 @@ function RegisterForm({ onRegisterSuccess }) {
     e.preventDefault();
     try {
       // Intenta hacer la petición POST a nuestro endpoint
-      await axios.post('http://localhost:8000/users/', formData);
+      await api.post('/users/', formData);
       
       // Si la petición es exitosa, llama a la función del componente padre.
       // La alerta y la redirección se manejarán allí.

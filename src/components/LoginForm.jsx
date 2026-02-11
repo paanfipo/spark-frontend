@@ -1,7 +1,8 @@
 // src/components/LoginForm.jsx
 import React, { useState } from 'react';
-import axios from 'axios';
 import styles from './Forms.module.css';
+
+import { api } from '../api';
 
 function LoginForm({ onLoginSuccess }) {
   const [formData, setFormData] = useState({
@@ -29,15 +30,11 @@ function LoginForm({ onLoginSuccess }) {
       params.append('username', formData.username);
       params.append('password', formData.password);
 
-      const response = await axios.post('http://localhost:8000/token', params);
+      const response = await api.post('/token', params, {
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+      });
 
-      const { access_token } = response.data;
-
-      // Guarda el token en el almacenamiento local del navegador
-      localStorage.setItem('token', access_token);
-
-      // Llama a la función del componente padre para avisar que el login fue exitoso
-      onLoginSuccess(access_token);
+      onLoginSuccess(response.data.access_token);
 
     } catch (err) {
       setError('Email o contraseña incorrectos.');

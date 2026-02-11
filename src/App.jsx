@@ -8,15 +8,9 @@ import DashboardPage from './pages/DashboardPage';
 import DashboardLayout from './layout/DashboardLayout'; 
 import GameListPage from './pages/GameListPage';
 
-import axios from 'axios';
-//import WordStormGame from './pages/WordStormGame';
-
-import { API_URL } from "./config";
+import { api } from './api';
 
 
-export const api = axios.create({
-  baseURL: API_URL,
-});
 
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('token');
