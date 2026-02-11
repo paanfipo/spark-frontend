@@ -18,32 +18,55 @@ function RegisterForm({ onRegisterSuccess }) {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      // Intenta hacer la petición POST a nuestro endpoint
-      await api.post('/users/', formData);
-      
-      // Si la petición es exitosa, llama a la función del componente padre.
-      // La alerta y la redirección se manejarán allí.
-      onRegisterSuccess(); 
+  e.preventDefault();
 
-    } catch (error) {
-      // Este bloque ahora es más inteligente y maneja diferentes tipos de errores.
-      if (error.response) {
-        // El servidor respondió con un código de error (ej: email duplicado)
-        console.error('Error de la API:', error.response.data);
-        alert('Error: ' + (error.response.data.detail || 'Algo salió mal.'));
-      } else if (error.request) {
-        // La petición se hizo pero no se recibió respuesta (servidor caído)
-        console.error('Error de red:', error.request);
-        alert('Error de conexión: No se pudo conectar con el servidor. ¿Está encendido?');
-      } else {
-        // Ocurrió un error al configurar la petición
-        console.error('Error de configuración:', error.message);
-        alert('Error: ' + error.message);
+  // 1) Validación frontend (consistente con tu backend: min_length = 8)
+  const pwd = (formData.password || "").trim();
+  if (pwd.length < 8) {
+    alert("La contraseña debe tener al menos 8 caracteres.");
+    return;
+  }
+
+  try {
+    await api.post("/users/", {
+      ...formData,
+      password: pwd,
+      email: (formData.email || "").trim(),
+      first_name: (formData.first_name || "").trim(),
+      last_name: (formData.last_name || "").trim(),
+    });
+
+    onRegisterSuccess();
+  } catch (error) {
+    if (error.response) {
+      // 2) Mostrar detalle real (incluye 422 de validación)
+      const data = error.response.data;
+
+      let msg = "Algo salió mal.";
+      if (typeof data?.detail === "string") {
+        msg = data.detail;
+      } else if (Array.isArray(data?.detail)) {
+        // Formato típico de FastAPI para errores 422
+        msg = data.detail
+          .map((d) => {
+            const loc = Array.isArray(d.loc) ? d.loc.join(".") : "body";
+            return `${loc}: ${d.msg}`;
+          })
+          .join("\n");
       }
+
+      console.error("Error de la API:", data);
+      alert(`Error: ${msg}`);
+    } else if (error.request) {
+      console.error("Error de red:", error.request);
+      alert("Error de conexión: No se pudo conectar con el servidor. ¿Está encendido?");
+    } else {
+      console.error("Error de configuración:", error.message);
+      alert("Error: " + error.message);
     }
-  };
+  }
+};
+
 
   return (
     <form onSubmit={handleSubmit} style={{width: '100%', display: 'flex', flexDirection: 'column', gap: '20px'}}>
