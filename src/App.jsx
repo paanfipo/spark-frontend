@@ -11,6 +11,19 @@ import GameListPage from './pages/GameListPage';
 import axios from 'axios';
 //import WordStormGame from './pages/WordStormGame';
 
+import { API_URL } from "./config";
+
+
+export const api = axios.create({
+  baseURL: API_URL,
+});
+
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem('token');
+  if (token) config.headers.Authorization = `Bearer ${token}`;
+  return config;
+});
+
 //IMPORTACIÓN DE JUEGOS
 import GamePlayer from './pages/GamePlayer';
 //import MatrizMemoria from './games/MatrizMemoria/MatrizMemoria';
@@ -24,9 +37,12 @@ function App() {
     const fetchUserData = async () => {
       if (token) {
         try {
-          const response = await axios.get('http://localhost:8000/users/me/', {
+          /*const response = await axios.get('http://localhost:8000/users/me/', {
             headers: { Authorization: `Bearer ${token}` }
-          });
+            const response = await api.get('/users/me/', {
+            headers: { Authorization: `Bearer ${token}` }
+          });*/
+          const response = await api.get('/users/me/');
           setCurrentUser(response.data);
         } catch (error) {
           console.error("Token inválido o error al obtener datos del usuario.", error);
