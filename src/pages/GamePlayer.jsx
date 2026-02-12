@@ -1,8 +1,10 @@
 // src/pages/GamePlayer.jsx
 import React, { Suspense, useMemo, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios'; 
 import GameCanvas from '../layout/GameCanvas';
+
+import { api } from '../api';
+
 
 // --- Componentes  ---
 import ResumenMetricas from '../components/ResumenMetricas/ResumenMetricas';
@@ -139,8 +141,8 @@ export default function GamePlayer() {
     // C. Guarda en la Base de Datos
     try {
       const token = localStorage.getItem('token');
-      await axios.patch(
-        `http://localhost:8000/gameplays/${gameplayId}/results`,
+      await api.patch(
+        `/gameplays/${gameplayId}/results`,
         { score: scoreToSave, results_data: formattedData.metrics },
         { headers: { Authorization: `Bearer ${token}` } }
       );
